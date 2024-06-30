@@ -1,0 +1,20 @@
+{
+  "name": "ocpr03-gameon",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch sass:assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alexiGrigorov/OCPR03-GameOn.git"
+  },
+  "author": "Alexi GRIGOROV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexiGrigorov/OCPR03-GameOn/issues"
+  },
+  "homepage": "https://github.com/alexiGrigorov/OCPR03-GameOn#readme",
+  "description": ""
+}
