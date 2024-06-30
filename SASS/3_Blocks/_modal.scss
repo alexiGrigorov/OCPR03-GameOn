@@ -15,12 +15,12 @@
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
-  animation-duration: var(--modal-duration);
-  background: #232323;
+  animation-duration: 0.8s;
+  background: var(--clr-neutral-210);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: var(--clr-neutral-900);
   padding-top: 10px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 label {
-  font-family: var(--font-default);
+  font-family: var(--ff-sans);
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
@@ -38,7 +38,7 @@ label {
 }
 input {
   padding: 8px;
-  border: 0.8px solid #ccc;
+  border: 0.8px solid var(--clr-neutral-740);
   outline: none;
 }
 
@@ -52,8 +52,8 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
+  font-size: 1em;
+  color: var(--clr-primary-400);
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -63,10 +63,10 @@ input {
   transition: 0.3s;
 }
 .formData[data-error-visible="true"]::after {
-  opacity: 1;
+  opacity: 0.87;
 }
 .formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
+  border: 2px solid var(--clr-primary-400);
 }
 /* 
   input[data-error]::after {
@@ -86,7 +86,7 @@ input {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #279e7a;
+  border: 2px solid var(--clr-primary-600);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -100,7 +100,7 @@ input {
   content: "";
   width: 13px;
   height: 13px;
-  background-color: #279e7a;
+  background-color: var(--clr-primary-600);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -119,12 +119,12 @@ input {
   opacity: 1;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
+  background: var(--clr-primary-600);
 }
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
   border: 0;
-  background: #c4c4c4;
+  background: var(--clr-neutral-715);
 }
 .checkbox2-label .checkbox-icon::after {
   width: 7px;
@@ -132,8 +132,8 @@ input {
   border-radius: 2px;
   background: transparent;
   border: 2px solid transparent;
-  border-bottom-color: #fff;
-  border-left-color: #fff;
+  border-bottom-color: var(--clr-neutral-900);
+  border-left-color: var(--clr-neutral-900);
   transform: rotate(-55deg);
   left: 21%;
   top: 19%;
@@ -155,7 +155,7 @@ input {
   content: " ";
   height: 33px;
   width: 3px;
-  background-color: #fff;
+  background-color: var(--clr-neutral-900);
 }
 .close:before {
   transform: rotate(45deg);
@@ -170,13 +170,13 @@ input {
 }
 
 .btn-submit {
-  background: #fe142f;
+  background: var(--clr-primary-600);
   display: block;
   margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
-  color: #fff;
+  color: var(--clr-neutral-900);
   cursor: pointer;
   border: 0;
 }
