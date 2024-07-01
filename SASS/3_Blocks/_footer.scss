@@ -1,27 +1,12 @@
 @use "../1_Composition/breakpoints" as breakpoints;
 
-.footer {
-  margin: 20px;
-  padding: 10px;
-  font-family: var(--ff-sans);
-}
-
-footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
-}
-
 .copyrights {
   color: var(--clr-primary-600);
-  padding: 0;
-  font-size: 1rem;
-  margin: 60px 0 30px;
-  font-weight: bolder;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-500);
 }
 @media screen and (max-width: breakpoints.$footer-mobile) {
   .copyrights {
-    margin-top: 50px;
     text-align: center;
   }
 }

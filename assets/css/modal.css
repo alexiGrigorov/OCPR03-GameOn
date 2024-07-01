@@ -1,5 +1,6 @@
 :root {
   --max-width: 1240px;
+  --p-max-width: 65ch;
   --fs-100: clamp(0.64rem, 0.6549rem + -0.0192vi, 0.651rem);
   --fs-200: clamp(0.7813rem, 0.7747rem + 0.0326vi, 0.8rem);
   --fs-300: clamp(0.9375rem, 0.9158rem + 0.1087vi, 1rem);
@@ -9,10 +10,15 @@
   --fs-700: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
   --fs-800: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
   --fs-900: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
+  --fw-100: 100;
+  --fw-200: 200;
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
+  --fw-600: 600;
   --fw-700: 700;
+  --fw-800: 800;
+  --fw-900: 900;
   --space-100: clamp(0.3125rem, 0.3125rem + 0vi, 0.3125rem);
   --space-200: clamp(0.5625rem, 0.5408rem + 0.1087vi, 0.625rem);
   --space-300: clamp(0.875rem, 0.8533rem + 0.1087vi, 0.9375rem);
@@ -30,10 +36,6 @@
   --space-600-700: clamp(2.25rem, 1.7283rem + 2.6087vi, 3.75rem);
   --space-700-800: clamp(3.375rem, 2.8098rem + 2.8261vi, 5rem);
   --space-800-900: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
-  --space-300-500: clamp(0.875rem, 0.5272rem + 1.7391vi, 1.875rem);
-  --space-500-700: clamp(1.6875rem, 0.9701rem + 3.587vi, 3.75rem);
-  --space-200-600: clamp(0.5625rem, -0.1114rem + 3.3696vi, 2.5rem);
-  --space-100-800: clamp(0.3125rem, -1.3179rem + 8.1522vi, 5rem);
 }
 
 :root {
@@ -55,35 +57,133 @@
   --clr-triadic-b-400: #2ffe14;
 }
 
-* {
+/* Box sizing rules */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  hanging-punctuation: first last;
+  scroll-behavior: smooth;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+/* Set core body defaults */
+body {
+  max-width: var(--max-width);
+  min-height: 100svh;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-400);
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* improve readability with max-width on paragraphs and lists */
+/* prevent orphans in supported browsers */
+p,
+li {
+  max-width: var(--p-max-width);
+  text-wrap: pretty;
+}
+
+/* Remove default list styles on lists that have classes on them without raising specificity */
+ul:where(ul[class]),
+ol:where(ol[class]) {
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-style: italic;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: calc(10 * var(--space-400));
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: var(--space-600);
 }
 
 body {
-  margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
-  font-family: var(--ff-sans);
-  font-size: 18px;
-  max-width: 1300px;
-  margin: 0 auto;
+  margin-inline: auto;
+  padding: var(--space-400-500);
+  gap: var(--space-800);
 }
 
-p {
-  margin-bottom: 0;
-  padding: 0.5vw;
+@media screen and (max-width: 800px) {
+  body {
+    gap: var(--space-500);
+  }
 }
-
-img {
-  padding-right: 1rem;
-}
-
 .topnav {
+  padding-inline-start: var(--space-700);
   overflow: hidden;
-  margin: 3.5%;
 }
 
 .header-logo {
@@ -147,13 +247,10 @@ img {
   }
 }
 main {
+  padding-inline: var(--space-700);
   font-size: 130%;
   font-weight: bolder;
   color: black;
-  padding-top: 0.5vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
 }
@@ -293,29 +390,14 @@ main {
     padding: 12px 35px;
   }
 }
-.footer {
-  margin: 20px;
-  padding: 10px;
-  font-family: var(--ff-sans);
-}
-
-footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
-}
-
 .copyrights {
   color: var(--clr-primary-600);
-  padding: 0;
-  font-size: 1rem;
-  margin: 60px 0 30px;
-  font-weight: bolder;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-500);
 }
 
 @media screen and (max-width: 800px) {
   .copyrights {
-    margin-top: 50px;
     text-align: center;
   }
 }

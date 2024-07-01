@@ -1,8 +1,8 @@
 @use "../1_Composition/breakpoints" as breakpoints;
 
 .topnav {
+  padding-inline-start: var(--space-700);
   overflow: hidden;
-  margin: 3.5%;
 }
 .header-logo {
   float: left;
