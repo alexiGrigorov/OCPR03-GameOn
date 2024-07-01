@@ -1,0 +1,50 @@
+/************
+ * Flow
+ ************/
+
+.flow > * + * {
+  // --_flow-gap: var(--space-400);
+
+  margin-block-start: var(--_flow-gap, var(--space-400));
+}
+
+.flow-padding > * {
+  // --_flow-gap: var(--space-400);
+
+  padding-block: var(--_flow-gap, var(--space-400));
+}
+
+/************
+ * Flex
+ ************/
+
+[class^="flex-"],
+[class*=" flex-"] {
+  // --_flex-gap: var(--space-400);
+
+  display: flex;
+  gap: var(--_flex-gap, var(--space-400));
+}
+
+.flex-wrapper {
+  // --_flex-direction: row;
+  // --_max-wrapper-width: var(--max-width);
+  // --_inline-wrapper-padding: var(--space-500);
+
+  flex-direction: var(--_flex-direction, row);
+  width: min(
+    var(--_max-wrapper-width, var(--max-width)),
+    100% - (var(--_inline-wrapper-padding, var(--space-500)) * 2)
+  );
+  margin-inline: auto;
+}
+
+.flex-space-between {
+  // --_flex-direction: row;
+  // --_flex-align:center;
+  --_flex-gap: normal;
+
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: space-between;
+}

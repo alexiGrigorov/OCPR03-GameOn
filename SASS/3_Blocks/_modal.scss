@@ -29,9 +29,10 @@
   margin: 15px auto;
 }
 
-label {
+label,
+.text-label {
   font-family: var(--ff-sans);
-  font-size: 17px;
+  font-size: var(--fs-300);
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -52,12 +53,12 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 1em;
-  color: var(--clr-primary-400);
+  font-size: var(--fs-100);
+  color: var(--clr-error);
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  // text-align: right;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -66,7 +67,7 @@ input {
   opacity: 0.87;
 }
 .formData[data-error-visible="true"] .text-control {
-  border: 2px solid var(--clr-primary-400);
+  border: 2px solid var(--clr-error);
 }
 /* 
   input[data-error]::after {
@@ -79,14 +80,14 @@ input {
   position: relative;
   margin-left: 36px;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: var(--fw-400);
 }
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid var(--clr-primary-600);
+  border: 2px solid var(--clr-select);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -100,7 +101,7 @@ input {
   content: "";
   width: 13px;
   height: 13px;
-  background-color: var(--clr-primary-600);
+  background-color: var(--clr-select);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -119,7 +120,7 @@ input {
   opacity: 1;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: var(--clr-primary-600);
+  background: var(--clr-select);
 }
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
@@ -164,10 +165,10 @@ input {
   transform: rotate(-45deg);
 }
 
-.text-label {
-  font-weight: normal;
-  font-size: 16px;
-}
+// .text-label {
+//   font-weight: normal;
+//   font-size: 16px;
+// }
 
 .btn-submit {
   background: var(--clr-primary-600);

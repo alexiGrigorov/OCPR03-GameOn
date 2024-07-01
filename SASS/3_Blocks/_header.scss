@@ -1,65 +1,73 @@
 @use "../1_Composition/breakpoints" as breakpoints;
 
-.topnav {
+.site-header {
+  --_flex-direction: row;
+
   padding-inline-start: var(--space-700);
-  overflow: hidden;
-}
-.header-logo {
-  float: left;
-}
-.main-navbar {
-  float: right;
-}
-.topnav a {
-  float: left;
-  display: block;
-  color: var(--clr-neutral-100);
-  text-align: center;
-  padding: 12px 12px;
-  margin: 5px;
-  text-decoration: none;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
-}
 
-.topnav a:hover {
-  background-color: var(--clr-primary-600);
-  color: var(--clr-neutral-900);
-  border-radius: 15px;
-}
+  & .header-logo {
+    width: calc(2 * var(--space-900));
+  }
 
-.topnav a.active {
-  background-color: var(--clr-primary-600);
-  color: var(--clr-neutral-900);
-  border-radius: 15px;
-}
+  & a {
+    padding: var(--space-200) var(--space-300);
+    color: var(--clr-neutral-100);
+    font-weight: var(--fw-500);
+    text-decoration: none;
 
-.topnav .icon {
-  display: none;
-}
+    &:hover,
+    &:focus {
+      border-radius: var(--space-300);
+      color: var(--clr-neutral-900);
+      background-color: var(--clr-primary-600);
+      text-decoration: underline;
+    }
 
-@media screen and (max-width: breakpoints.$header-mobile) {
-  .topnav a {
+    &.active {
+      border-radius: var(--space-300);
+      color: var(--clr-neutral-900);
+      background-color: var(--clr-primary-600);
+      text-decoration: underline;
+    }
+  }
+  & .menu-icon {
     display: none;
   }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
 }
-// 768px
+
 @media screen and (max-width: breakpoints.$header-mobile) {
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
+  .site-header {
+    --_flex-align: baseline;
+
+    padding-inline-start: 0;
+
+    .header-logo {
+      width: var(--space-900);
+    }
+
+    .main-navbar {
+      --_flex-direction: column;
+      --_flex-align: stretch;
+    }
+
+    & a {
+      display: none;
+    }
+
+    & .menu-icon {
+      display: block;
+
+      order: -1;
+      align-self: flex-end;
+
+      color: var(--clr-primary-600);
+      font-size: var(--fs-500);
+    }
+
+    & .expanded-main-navbar {
+      & a {
+        display: block;
+      }
+    }
   }
 }

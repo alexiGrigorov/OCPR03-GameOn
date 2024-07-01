@@ -15,21 +15,20 @@
     <link rel="stylesheet" href="./assets/css/modal.css" />
     <script src="./assets/js/modal.js" defer></script>
   </head>
-  <body>
-    <header class="topnav" id="myTopnav">
+  <body class="site [ flex-wrapper ]">
+    <header class="site-header [ flex-space-between ]">
       <div class="header-logo">
         <img alt="GameOn" src="./assets/images/logo.png" />
       </div>
-      <div class="main-navbar">
-        <a href="#" class="active"><span>Accueil</span></a>
-        <a href="#"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
+      <nav class="main-navbar [ flex-space-between ]" id="mainNavbar">
+        <a href="#">Détails de l'évènement</a>
+        <a href="#">À propos</a>
+        <a href="#">Contact</a>
+        <a href="#">Évènements passés</a>
+        <span class="menu-icon" onclick="editNav()"
+          ><i class="fa fa-bars"></i
+        ></span>
+      </nav>
     </header>
     <main>
       <div class="hero-section">

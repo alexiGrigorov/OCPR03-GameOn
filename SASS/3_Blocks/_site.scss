@@ -1,15 +1,17 @@
 @use "../1_Composition/breakpoints" as breakpoints;
 
-body {
-  display: flex;
-  flex-direction: column;
-  margin-inline: auto;
-  padding: var(--space-400-500);
-  gap: var(--space-800);
+.site {
+  --_flex-gap: var(--space-800);
+  --_flex-direction: column;
+  --_max-wrapper-width: var(--max-width);
+  --_inline-wrapper-padding: 0;
+
+  padding-block: var(--space-600);
 }
 
 @media screen and (max-width: breakpoints.$mobile) {
-  body {
-    gap: var(--space-500);
+  .site {
+    --_flex-gap: var(--space-500);
+    padding: var(--space-500);
   }
 }
