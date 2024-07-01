@@ -3,7 +3,7 @@
 .site-header {
   --_flex-direction: row;
 
-  padding-inline-start: var(--space-700);
+  margin-inline-start: var(--space-700);
 
   & .header-logo {
     width: calc(2 * var(--space-900));
@@ -39,7 +39,7 @@
   .site-header {
     --_flex-align: baseline;
 
-    padding-inline-start: 0;
+    margin-inline-start: 0;
 
     .header-logo {
       width: var(--space-900);
