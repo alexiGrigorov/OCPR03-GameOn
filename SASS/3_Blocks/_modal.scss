@@ -95,19 +95,19 @@
       align-items: center;
       font-size: var(--fs-200);
     }
-  }
-}
 
-.btn-submit {
-  background: var(--clr-primary-600);
-  display: block;
-  margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
-  color: var(--clr-neutral-900);
-  cursor: pointer;
-  border: 0;
+    & .btn-submit {
+      background: var(--clr-primary-600);
+      display: block;
+      margin: 0 auto;
+      border-radius: 7px;
+      font-size: 1rem;
+      padding: 12px 82px;
+      color: var(--clr-neutral-900);
+      cursor: pointer;
+      border: 0;
+    }
+  }
 }
 
 @keyframes modalopen {
