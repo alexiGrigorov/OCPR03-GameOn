@@ -30,14 +30,14 @@
       text-decoration: underline;
     }
   }
-  & .menu-icon {
+  & .icon-bars {
     display: none;
   }
 }
 
 @media screen and (max-width: breakpoints.$header-mobile) {
   .site-header {
-    --_flex-align: baseline;
+    --_flex-align: flex-start;
 
     margin-inline-start: 0;
 
@@ -54,17 +54,23 @@
       display: none;
     }
 
-    & .menu-icon {
+    & .icon-bars {
       display: block;
+      // position: relative;
 
       order: -1;
       align-self: flex-end;
 
       color: var(--clr-primary-600);
       font-size: var(--fs-500);
+
+      // &::before {
+      //   position: absolute;
+      //   right: 0;
+      // }
     }
 
-    & .expanded-main-navbar {
+    & .expanded {
       & a {
         display: block;
       }

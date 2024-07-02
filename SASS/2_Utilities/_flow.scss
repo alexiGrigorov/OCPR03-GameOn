@@ -34,7 +34,7 @@
   flex-direction: var(--_flex-direction, row);
   width: min(
     var(--_max-wrapper-width, var(--max-width)),
-    100% - (var(--_inline-wrapper-padding, var(--space-500)) * 2)
+    100% - (var(--_inline-wrapper-padding, 0))
   );
   margin-inline: auto;
 }

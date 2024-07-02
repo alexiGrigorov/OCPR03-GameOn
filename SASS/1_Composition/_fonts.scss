@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "OCPR03-GameOn-icons";
+  src: url("../fonts/OCPR03-GameOn-icons/OCPR03-GameOn-icons.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 :root {
   --ff-sans: "DM Sans", Arial, Helvetica, sans-serif;
+  --ff-icons: "OCPR03-GameOn-icons";
 }

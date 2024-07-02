@@ -40,8 +40,16 @@
   --space-800-900: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
 }
 
+@font-face {
+  font-family: "OCPR03-GameOn-icons";
+  src: url("../fonts/OCPR03-GameOn-icons/OCPR03-GameOn-icons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 :root {
   --ff-sans: "DM Sans", Arial, Helvetica, sans-serif;
+  --ff-icons: "OCPR03-GameOn-icons";
 }
 
 :root {
@@ -54,10 +62,7 @@
   --clr-complementary-200: #14fee3;
   --clr-select: #279e7a;
   --clr-error: #ff4e60;
-  --clr-analogous-a-400: #fe14a4;
-  --clr-analogous-b-900: #fe6e14;
-  --clr-triadic-a-500: #fee314;
-  --clr-triadic-b-400: #2ffe14;
+  --clr-background: #1a279c;
 }
 
 /* Box sizing rules */
@@ -171,6 +176,74 @@ textarea:not([rows]) {
   scroll-margin-block: var(--space-600);
 }
 
+[class^=icon-]::before,
+[class*=" icon-"]::before,
+[class^=icon-]::after,
+[class*=" icon-"]::after {
+  display: inline-block;
+  color: inherit;
+  font-family: var(--ff-icons) !important;
+  font-size: inherit;
+  font-weight: var(--fw-400);
+  line-height: 1;
+  speak: never;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: text-bottom;
+  margin-inline-end: var(--space-200);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bars:before {
+  content: "\e900";
+  margin-inline-end: 0;
+}
+
+.icon-xmark:before {
+  content: "\e901";
+  margin-inline-end: 0;
+}
+
+.icon-circle:before {
+  content: "\e907";
+}
+
+.icon-circle-dot:before {
+  content: "\e903";
+}
+
+.icon-square:before {
+  content: "\e904";
+}
+
+.icon-square-check:before {
+  content: "\e905";
+}
+
+input[type=radio] + .icon-radio:before {
+  content: "\e907";
+  font-size: var(--fs-400);
+  color: var(--clr-select);
+}
+
+input[type=radio]:checked + .icon-radio:before {
+  content: "\e903";
+}
+
+input[type=checkbox] + .icon-checkbox:before {
+  content: "\e904";
+  font-size: var(--fs-400);
+  color: var(--clr-neutral-715);
+}
+
+input[type=checkbox]:checked + .icon-checkbox:before {
+  content: "\e905";
+  color: var(--clr-select);
+  background: radial-gradient(circle closest-side, var(--clr-neutral-715) 100%, transparent 100%);
+}
+
 /************
  * Flow
  ************/
@@ -193,7 +266,7 @@ textarea:not([rows]) {
 
 .flex-wrapper {
   flex-direction: var(--_flex-direction, row);
-  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - var(--_inline-wrapper-padding, var(--space-500)) * 2);
+  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - (var(--_inline-wrapper-padding, 0)));
   margin-inline: auto;
 }
 
@@ -207,8 +280,6 @@ textarea:not([rows]) {
 .site {
   --_flex-gap: var(--space-800);
   --_flex-direction: column;
-  --_max-wrapper-width: var(--max-width);
-  --_inline-wrapper-padding: 0;
   padding-block: var(--space-600);
 }
 
@@ -243,13 +314,13 @@ textarea:not([rows]) {
   background-color: var(--clr-primary-600);
   text-decoration: underline;
 }
-.site-header .menu-icon {
+.site-header .icon-bars {
   display: none;
 }
 
 @media screen and (max-width: 800px) {
   .site-header {
-    --_flex-align: baseline;
+    --_flex-align: flex-start;
     margin-inline-start: 0;
   }
   .site-header .header-logo {
@@ -262,14 +333,14 @@ textarea:not([rows]) {
   .site-header a {
     display: none;
   }
-  .site-header .menu-icon {
+  .site-header .icon-bars {
     display: block;
     order: -1;
     align-self: flex-end;
     color: var(--clr-primary-600);
     font-size: var(--fs-500);
   }
-  .site-header .expanded-main-navbar a {
+  .site-header .expanded a {
     display: block;
   }
 }
@@ -382,186 +453,82 @@ textarea:not([rows]) {
     text-align: center;
   }
 }
-.bground {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
-}
-
-.content {
-  margin: 5% auto;
-  width: 100%;
-  max-width: 500px;
+.signup {
   animation-name: modalopen;
-  animation-duration: 0.8s;
-  background: var(--clr-neutral-210);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+  border: none;
+  border-radius: var(--space-200);
+  padding-block: var(--space-400);
+  padding-inline: var(--space-600);
+  max-width: 500px;
   color: var(--clr-neutral-900);
-  padding-top: 10px;
-}
-
-.modal-body {
-  padding: 15px 8%;
-  margin: 15px auto;
-}
-
-label,
-.text-label {
-  font-family: var(--ff-sans);
+  background-color: var(--clr-neutral-210);
   font-size: var(--fs-300);
-  font-weight: normal;
-  display: inline-block;
-  margin-bottom: 11px;
 }
-
-input {
-  padding: 8px;
-  border: 0.8px solid var(--clr-neutral-740);
-  outline: none;
+.signup::backdrop {
+  background-color: var(--clr-background);
+  opacity: 0.4;
 }
-
-.text-control {
-  margin: 0;
-  padding: 8px;
+.signup .icon-xmark {
+  display: block;
+  text-align: end;
+  font-size: var(--fs-400);
+}
+.signup form {
+  --_flex-gap: var(--space-300);
+  --_flex-direction: column;
+  --_flex-align: flex-start;
+}
+.signup form .formData {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  border-radius: 8px;
-  font-size: 20px;
-  height: 48px;
 }
-
-.formData[data-error]::after {
+.signup form .formData > :first-child {
+  margin-block-end: var(--_flex-gap);
+}
+.signup form .formData input {
+  border: 0.8px solid var(--clr-neutral-740);
+  border-radius: var(--space-200);
+  padding: var(--space-200);
+  width: 100%;
+  font-size: var(--fs-400);
+}
+.signup form .formData input:focus {
+  outline: var(--space-100) solid var(--clr-background);
+}
+.signup form .formData[data-error]::after {
   content: attr(data-error);
   font-size: var(--fs-100);
   color: var(--clr-error);
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  line-height: 0.3;
+  line-height: 1.1;
   opacity: 0;
-  transition: 0.3s;
+  transition: opacity 0.3s;
 }
-
-.formData[data-error-visible=true]::after {
+.signup form .formData[data-error-visible=true]::after {
   opacity: 0.87;
 }
-
-.formData[data-error-visible=true] .text-control {
+.signup form .formData[data-error-visible=true] input {
   border: 2px solid var(--clr-error);
 }
-
-/* 
-  input[data-error]::after {
-      content: attr(data-error);
-      font-size: 0.4em;
-      color: red;
-  } */
-.checkbox-label,
-.checkbox2-label {
-  position: relative;
-  margin-left: 36px;
-  font-size: 12px;
-  font-weight: var(--fw-400);
+.signup form .cities {
+  --_flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: var(--space-100);
 }
-
-.checkbox-label .checkbox-icon,
-.checkbox2-label .checkbox-icon {
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--clr-select);
-  border-radius: 50%;
-  text-indent: 29px;
-  white-space: nowrap;
-  position: absolute;
-  left: -30px;
-  top: -1px;
-  transition: 0.3s;
+.signup form .conditions {
+  row-gap: var(--space-100);
 }
-
-.checkbox-label .checkbox-icon::after,
-.checkbox2-label .checkbox-icon::after {
-  content: "";
-  width: 13px;
-  height: 13px;
-  background-color: var(--clr-select);
-  border-radius: 50%;
-  text-indent: 29px;
-  white-space: nowrap;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.3s;
-  opacity: 0;
-}
-
-.checkbox-input {
+.signup form input[type=checkbox],
+.signup form input[type=radio] {
   display: none;
 }
-
-.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
-.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
-  opacity: 1;
-}
-
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: var(--clr-select);
-}
-
-.checkbox2-label .checkbox-icon {
-  border-radius: 4px;
-  border: 0;
-  background: var(--clr-neutral-715);
-}
-
-.checkbox2-label .checkbox-icon::after {
-  width: 7px;
-  height: 4px;
-  border-radius: 2px;
-  background: transparent;
-  border: 2px solid transparent;
-  border-bottom-color: var(--clr-neutral-900);
-  border-left-color: var(--clr-neutral-900);
-  transform: rotate(-55deg);
-  left: 21%;
-  top: 19%;
-}
-
-.close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 32px;
-  height: 32px;
-  opacity: 1;
-  cursor: pointer;
-  transform: scale(0.7);
-}
-
-.close:before,
-.close:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 33px;
-  width: 3px;
-  background-color: var(--clr-neutral-900);
-}
-
-.close:before {
-  transform: rotate(45deg);
-}
-
-.close:after {
-  transform: rotate(-45deg);
+.signup form label[class^=icon-] {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-200);
 }
 
 .btn-submit {
@@ -583,6 +550,16 @@ input {
   }
   to {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 800px) {
+  .signup {
+    max-width: 100vw;
+    width: 100vw;
+    margin-top: var(--space-800);
+  }
+  .signup::backdrop {
+    opacity: 0;
   }
 }
 

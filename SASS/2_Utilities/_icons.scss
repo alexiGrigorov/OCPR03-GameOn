@@ -1,0 +1,65 @@
+[class^="icon-"]::before,
+[class*=" icon-"]::before,
+[class^="icon-"]::after,
+[class*=" icon-"]::after {
+  display: inline-block;
+  color: inherit;
+  font-family: var(--ff-icons) !important;
+  font-size: inherit;
+  font-weight: var(--fw-400);
+  line-height: 1;
+  speak: never;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: text-bottom;
+  margin-inline-end: var(--space-200);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bars:before {
+  content: "\e900";
+  margin-inline-end: 0;
+}
+.icon-xmark:before {
+  content: "\e901";
+  margin-inline-end: 0;
+}
+.icon-circle:before {
+  content: "\e907";
+}
+.icon-circle-dot:before {
+  content: "\e903";
+}
+.icon-square:before {
+  content: "\e904";
+}
+.icon-square-check:before {
+  content: "\e905";
+}
+
+input[type="radio"] + .icon-radio:before {
+  content: "\e907";
+  font-size: var(--fs-400);
+  color: var(--clr-select);
+}
+input[type="radio"]:checked + .icon-radio:before {
+  content: "\e903";
+}
+
+input[type="checkbox"] + .icon-checkbox:before {
+  content: "\e904";
+  font-size: var(--fs-400);
+  color: var(--clr-neutral-715);
+}
+input[type="checkbox"]:checked + .icon-checkbox:before {
+  content: "\e905";
+  color: var(--clr-select);
+  background: radial-gradient(
+    circle closest-side,
+    var(--clr-neutral-715) 100%,
+    transparent 100%
+  );
+}
