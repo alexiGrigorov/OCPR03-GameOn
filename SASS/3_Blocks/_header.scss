@@ -35,15 +35,11 @@
   }
 }
 
-@media screen and (max-width: breakpoints.$header-mobile) {
+@media screen and (max-width: breakpoints.$header-menu-mobile) {
   .site-header {
     --_flex-align: flex-start;
 
-    margin-inline-start: 0;
-
-    .header-logo {
-      width: var(--space-900);
-    }
+    margin-inline: var(--space-700);
 
     .main-navbar {
       --_flex-direction: column;
@@ -74,6 +70,16 @@
       & a {
         display: block;
       }
+    }
+  }
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  .site-header {
+    margin-inline: 0;
+
+    .header-logo {
+      width: var(--space-900);
     }
   }
 }

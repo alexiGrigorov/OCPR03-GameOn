@@ -318,13 +318,10 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   display: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 945px) {
   .site-header {
     --_flex-align: flex-start;
-    margin-inline-start: 0;
-  }
-  .site-header .header-logo {
-    width: var(--space-900);
+    margin-inline: var(--space-700);
   }
   .site-header .main-navbar {
     --_flex-direction: column;
@@ -342,6 +339,14 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   }
   .site-header .expanded a {
     display: block;
+  }
+}
+@media screen and (max-width: 800px) {
+  .site-header {
+    margin-inline: 0;
+  }
+  .site-header .header-logo {
+    width: var(--space-900);
   }
 }
 .hero {
@@ -530,8 +535,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   align-items: center;
   font-size: var(--fs-200);
 }
-
-.btn-submit {
+.signup form .btn-submit {
   background: var(--clr-primary-600);
   display: block;
   margin: 0 auto;
