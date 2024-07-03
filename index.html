@@ -52,15 +52,35 @@
       >
         <div class="formData">
           <label for="first">Prénom</label>
-          <input type="text" id="first" name="first" minlength="2" />
+          <input
+            type="text"
+            id="first"
+            name="first"
+            minlength="2"
+            pattern="^[a-zA-Z\-. ]*$"
+            required
+          />
         </div>
         <div class="formData" data-error="test" data-error-visible="true">
           <label for="last">Nom</label>
-          <input type="text" id="last" name="last" />
+          <input
+            type="text"
+            id="last"
+            name="last"
+            minlength="2"
+            pattern="^[a-zA-Z\-. ]*$"
+            required
+          />
         </div>
         <div class="formData">
           <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            required
+          />
         </div>
         <div class="formData">
           <label for="birthdate">Date de naissance</label>

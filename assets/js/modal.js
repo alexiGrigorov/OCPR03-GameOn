@@ -9,6 +9,7 @@ class App {
     this.validatableForm = validatableForm;
   }
   init() {
+    console.log("App connected");
     Object.values(this).forEach((feature) => {
       feature.init();
     });
@@ -69,37 +70,41 @@ class ValidatableForm {
 /********** Validatable Form Elements **********/
 
 class ValidatableTextInput {
-  constructor(inputTextElement, formDataElement) {
-    if (inputTextElement.type !== "text") {
-      throw new Error("The provided element is not a text input");
-    }
-    this.input = inputTextElement;
-
+  constructor(formDataElement, inputTextElement) {
     if (!formDataElement.classList.contains("formData")) {
       throw new Error("The provided element is not formData input wrapper");
-    }
-    if (!formDataElement.contains(this.input)) {
-      throw new Error(
-        "The provided element is not the appropriate formData input wrapper for the input element"
-      );
     }
 
     this.formData = formDataElement;
 
-    // this.formData.dataset.errorVisible = "false";
+    if (!formDataElement.contains(inputTextElement)) {
+      throw new Error(
+        "The provided element is not the appropriate input element for the formData wrapper"
+      );
+    }
+
+    if (inputTextElement.type !== "text") {
+      throw new Error("The provided element is not a text input");
+    }
+    this.input = inputTextElement;
   }
 
   init() {
     console.log(`${this.input.id} ValidatableTextInput is connected`);
+    this.input.addEventListener("blur", () => this.validate());
   }
-  validate() {}
+  validate() {
+    let error = null;
+
+    const value = this.input.value.trim();
+  }
 }
 
 //
 
 const first = new ValidatableTextInput(
-  document.getElementById("first"),
-  document.getElementById("first").parentElement
+  document.getElementById("first").parentElement,
+  document.getElementById("first")
 );
 first.init();
 
