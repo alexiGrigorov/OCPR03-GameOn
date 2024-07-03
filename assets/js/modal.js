@@ -1,64 +1,73 @@
-/********** Classes **********/
+/****** Classes ******/
 
-/********** App **********/
+/**********/
 
 class App {
-  constructor(expendableNavbar, modal, validatableForm) {
+  constructor(expendableNavbar, modalWithValidatableForm) {
     this.expendableNavbar = expendableNavbar;
-    this.modal = modal;
-    this.validatableForm = validatableForm;
+    this.modalWithValidatableForm = modalWithValidatableForm;
   }
   init() {
-    console.log("App connected");
     Object.values(this).forEach((feature) => {
       feature.init();
     });
   }
 }
 
-/********** App Features **********/
+/********/
 
 class ExpendableNavbar {
-  constructor(navElement) {
-    this.nav = navElement;
-    this.menuBtn = this.nav.lastElementChild;
+  constructor(NAV) {
+    this.navBar = NAV;
+    this.menuBtn = Array.from(this.navBar.children).filter(
+      (el) => el.tagName === "I"
+    )[0];
   }
   toggleExpanded() {
-    console.log("clicked");
-    this.nav.classList.toggle("expanded");
+    this.navBar.classList.toggle("expanded");
   }
   init() {
-    console.log("ExpendableNavbar connected");
     this.menuBtn.addEventListener("click", () => this.toggleExpanded());
   }
 }
 
-/*****/
-
-class Modal {
-  constructor(dialogElement, openBtn) {
-    this.dialog = dialogElement;
-    this.openBtn = openBtn;
-    this.closeBtn = dialogElement.firstElementChild;
+class ModalWithValidatableForm {
+  constructor(modal, ValidatableForm) {
+    this.modal = modal;
+    this.ValidatableForm = ValidatableForm;
   }
   init() {
-    console.log("Modal connected");
+    Object.values(this).forEach((feature) => {
+      feature.init();
+    });
+  }
+}
+
+/******/
+
+class Modal {
+  constructor(DIALOG, BUTTON) {
+    this.dialog = DIALOG;
+    this.openBtn = BUTTON;
+    this.closeBtn = Array.from(this.dialog.children).filter(
+      (el) => el.tagName === "I"
+    )[0];
+  }
+  init() {
+    // console.log("Modal connected");
     this.openBtn.addEventListener("click", () => this.dialog.showModal());
     this.closeBtn.addEventListener("click", () => this.dialog.close());
   }
 }
 
-/*****/
-
 class ValidatableForm {
-  constructor(formElement, submitBtn) {
-    this.form = formElement;
-    if (!this.form.contains(submitBtn)) {
-      throw new Error(
-        "The provided submit button is not associated with this form"
-      );
-    }
-    this.submitBtn = submitBtn;
+  constructor(FORM, validationBlocksArray) {
+    this.form = FORM;
+    this.submitBtn = Array.from(this.form.children).filter(
+      (el) => el.type === "submit"
+    )[0];
+
+    this.validationBlocksArray = validationBlocksArray;
   }
   init() {
     console.log("ValidatableForm connected");
@@ -67,48 +76,98 @@ class ValidatableForm {
   validateForm() {}
 }
 
-/********** Validatable Form Elements **********/
+/****/
 
-class ValidatableTextInput {
-  constructor(formDataElement, inputTextElement) {
-    if (!formDataElement.classList.contains("formData")) {
-      throw new Error("The provided element is not formData input wrapper");
-    }
+class ValidationBlock {
+  constructor(DIV, validatableInputsArray) {
+    this.formData = DIV;
+    this.validatableInputsArray = validatableInputsArray;
+  }
+  init() {
+    console.log("ValidationBlock connected");
+  }
+  validateBlock() {}
+}
 
-    this.formData = formDataElement;
+/**/
 
-    if (!formDataElement.contains(inputTextElement)) {
-      throw new Error(
-        "The provided element is not the appropriate input element for the formData wrapper"
-      );
-    }
-
-    if (inputTextElement.type !== "text") {
-      throw new Error("The provided element is not a text input");
-    }
-    this.input = inputTextElement;
+class ValidatableInputText {
+  constructor(INPUT) {
+    this.input = INPUT;
   }
 
   init() {
-    console.log(`${this.input.id} ValidatableTextInput is connected`);
     this.input.addEventListener("blur", () => this.validate());
   }
   validate() {
-    let error = null;
-
-    const value = this.input.value.trim();
+    console.log(`${this.input.id} validated`);
   }
 }
 
-//
+class ValidatableInputEmail {
+  constructor(INPUT) {
+    this.input = INPUT;
+  }
 
-const first = new ValidatableTextInput(
-  document.getElementById("first").parentElement,
-  document.getElementById("first")
-);
-first.init();
+  init() {
+    this.input.addEventListener("blur", () => this.validate());
+  }
+  validate() {
+    console.log(`${this.input.id} validated`);
+  }
+}
 
-//
+class ValidatableInputDate {
+  constructor(INPUT) {
+    this.input = INPUT;
+  }
+
+  init() {
+    this.input.addEventListener("blur", () => this.validate());
+  }
+  validate() {
+    console.log(`${this.input.id} validated`);
+  }
+}
+
+class ValidatableInputNumber {
+  constructor(INPUT) {
+    this.input = INPUT;
+  }
+
+  init() {
+    this.input.addEventListener("blur", () => this.validate());
+  }
+  validate() {
+    console.log(`${this.input.id} validated`);
+  }
+}
+
+class ValidatableInputRadio {
+  constructor(INPUT) {
+    this.input = INPUT;
+  }
+
+  init() {
+    this.input.addEventListener("blur", () => this.validate());
+  }
+  validate() {
+    console.log(`${this.input.id} validated`);
+  }
+}
+
+class ValidatableInputCheckbox {
+  constructor(INPUT) {
+    this.input = INPUT;
+  }
+
+  init() {
+    this.input.addEventListener("blur", () => this.validate());
+  }
+  validate() {
+    console.log(`${this.input.id} validated`);
+  }
+}
 
 /********** Instantiating the features **********/
 const siteHeader = new ExpendableNavbar(document.getElementById("mainNavbar"));
@@ -117,18 +176,9 @@ const signupModal = new Modal(
   document.getElementById("signup"),
   document.getElementById("btn-signup")
 );
-
-const form = new ValidatableForm(
-  document.forms["reserve"],
-  document.getElementById("btn-submit")
-  // test for the constructor validation -> document.getElementById("btn-signup")
-);
+const reserve = new ValidatableForm(document.forms["reserve"], []);
+const signup = new ModalWithValidatableForm(signupModal, reserve);
 
 /********** Instantiating the app **********/
-const app = new App(siteHeader, signupModal, form);
+const app = new App(siteHeader, signup);
 app.init();
-app.modal.dialog.showModal();
-
-// DOM Elements
-
-const formData = document.querySelectorAll(".formData");

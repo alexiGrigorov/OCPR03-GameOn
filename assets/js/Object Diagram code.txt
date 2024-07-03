@@ -1,0 +1,94 @@
+https://mermaid.live/
+
+classDiagram
+    App *-- ExpendableNavbar
+    App *-- ModalWithValidatableForm
+    ModalWithValidatableForm *-- Modal
+    ModalWithValidatableForm *-- ValidatableForm
+    ValidatableForm *-- ValidationBlock
+    ValidationBlock *-- ValidatableInputText
+    ValidationBlock *-- ValidatableInputEmail
+    ValidationBlock *-- ValidatableInputDate
+    ValidationBlock *-- ValidatableInputNumber
+    ValidationBlock *-- ValidatableInputRadio
+    ValidationBlock *-- ValidatableInputCheckbox
+    
+    
+    class App{
+      -> ExpendableNavbar
+      -> ModalWithValidatableForm
+      init()
+
+    }
+
+    class ExpendableNavbar {
+        + <NAV>navBar
+        menuBtn
+        init()
+        toggleExpanded()
+    }
+
+    class ModalWithValidatableForm {
+        -> Modal
+        -> ValidatableForm
+        init()
+        validateForm()
+    }
+
+    class Modal {
+      + <DIALOG>dialog
+      + <BUTTON>openBtn
+      closeBtn
+      init()
+    }
+
+    class ValidatableForm {
+      + <FORM>form
+      submitBtn
+      -> [ ... validationBlocks ]
+      init()
+      validateForm()
+    }
+
+    class ValidationBlock {
+        + <DIV>formData
+        + [... ValidatableInputFields ]
+        init()
+        validateBlock()
+    }
+
+    class ValidatableInputText {
+        + <INPUT>inputText
+        init()
+        validateInput()
+    }
+
+    class ValidatableInputEmail {
+        + <INPUT>inputEmail
+        init()
+        validateInput()
+    }
+
+    class ValidatableInputDate {
+        + <INPUT>inputDate
+        init()
+        validateInput()
+    }
+
+    class ValidatableInputNumber {
+        + <INPUT>inputDate
+        init()
+        validateInput()
+    }
+
+    class ValidatableInputRadio {
+        + <INPUT>inputRadio
+        init()
+        validateInput()
+    }
+
+    class ValidatableInputCheckbox {
+        + <INPUT>inputCheckbox
+        init()
+        validateInput()
+    }
