@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --max-width: 1240px;
   --p-max-width: 65ch;
@@ -547,6 +548,27 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   color: var(--clr-neutral-900);
   cursor: pointer;
   border: 0;
+}
+
+.valid {
+  position: relative;
+}
+
+.valid::after {
+  position: absolute;
+  content: "Merci ! \aVotre réservation a été reçue.";
+  white-space: pre-wrap;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-neutral-210);
+  font-size: var(--fs-700);
+  padding-inline: var(--space-800);
+  text-align: center;
 }
 
 @keyframes modalopen {

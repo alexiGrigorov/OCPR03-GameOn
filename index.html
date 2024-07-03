@@ -57,7 +57,7 @@
             id="first"
             name="first"
             minlength="2"
-            pattern="^[a-zA-Z\-. ]*$"
+            pattern="^[\p{L} \-]+$"
             required
           />
         </div>
@@ -68,7 +68,7 @@
             id="last"
             name="last"
             minlength="2"
-            pattern="^[a-zA-Z\-. ]*$"
+            pattern="^[\p{L} \-]+$"
             required
           />
         </div>
@@ -90,7 +90,14 @@
           <label for="quantity"
             >À combien de tournois GameOn avez-vous déjà participé ?</label
           >
-          <input type="number" id="quantity" name="quantity" min="0" max="99" />
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="0"
+            max="99"
+            pattern="\d*"
+          />
         </div>
         <div class="formData">
           <p>A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -100,6 +107,7 @@
               id="location_1"
               name="location"
               value="New York"
+              required
             />
             <label class="icon-radio" for="location_1"> New York</label>
             <input
