@@ -30,6 +30,7 @@
   --space-700: clamp(3.375rem, 3.2446rem + 0.6522vi, 3.75rem);
   --space-800: clamp(4.5rem, 4.3261rem + 0.8696vi, 5rem);
   --space-900: clamp(6.75rem, 6.4891rem + 1.3043vi, 7.5rem);
+  --space-3000: clamp(30.375rem, 29.2011rem + 5.8696vi, 33.75rem);
   --space-100-200: clamp(0.3125rem, 0.2038rem + 0.5435vi, 0.625rem);
   --space-200-300: clamp(0.5625rem, 0.4321rem + 0.6522vi, 0.9375rem);
   --space-300-400: clamp(0.875rem, 0.7446rem + 0.6522vi, 1.25rem);
@@ -38,6 +39,7 @@
   --space-600-700: clamp(2.25rem, 1.7283rem + 2.6087vi, 3.75rem);
   --space-700-800: clamp(3.375rem, 2.8098rem + 2.8261vi, 5rem);
   --space-800-900: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
+  --space-500-700: clamp(1.6875rem, 0.9701rem + 3.587vi, 3.75rem);
 }
 
 @font-face {
@@ -186,7 +188,6 @@ textarea:not([rows]) {
   font-size: inherit;
   font-weight: var(--fw-400);
   line-height: 1;
-  speak: never;
   font-style: normal;
   font-variant: normal;
   text-transform: none;
@@ -318,7 +319,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   display: none;
 }
 
-@media screen and (max-width: 945px) {
+@media screen and (max-width: 980px) {
   .site-header {
     --_flex-align: flex-start;
     margin-inline: var(--space-700);
@@ -352,7 +353,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 .hero {
   margin-inline: var(--space-700);
   display: grid;
-  grid-template-columns: [hero-headline-start hero-text-start btn-signup-start] auto [hero-text-end btn-signup-end hero-img-start] auto [hero-headline-end] auto [hero-img-end];
+  grid-template-columns: [hero-headline-start hero-text-start btn-signup-start] 40% [hero-text-end btn-signup-end hero-img-start] auto [hero-headline-end] auto [hero-img-end];
   grid-template-rows: [hero-headline-start hero-img-start] auto [hero-headline-end hero-text-start] auto [hero-text-end btn-signup-start] auto [btn-signup-end hero-img-end];
   background-color: var(--clr-neutral-210);
   border-radius: var(--space-200);
@@ -361,15 +362,15 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 .hero .hero-headline {
   grid-area: hero-headline;
   z-index: 1;
-  padding-block-start: var(--space-700);
-  padding-inline-start: var(--space-700);
+  padding-block-start: var(--space-500-700);
+  padding-inline-start: var(--space-500-700);
   font-size: var(--fs-1100);
   font-weight: var(--fw-500);
 }
 .hero .hero-text {
   grid-area: hero-text;
-  padding-block: var(--space-700);
-  padding-inline-start: var(--space-700);
+  padding-block: var(--space-500-700);
+  padding-inline-start: var(--space-500-700);
   font-size: var(--fs-500);
 }
 .hero .hero-img {
@@ -388,8 +389,8 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 .hero .btn-signup {
   grid-area: btn-signup;
   width: fit-content;
-  margin-block-end: var(--space-700);
-  margin-inline-start: var(--space-700);
+  margin-block-end: var(--space-500-700);
+  margin-inline-start: var(--space-500-700);
   border-radius: var(--space-300);
   border: none;
   padding: var(--space-200) var(--space-500);
@@ -451,6 +452,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   color: var(--clr-primary-600);
   font-size: var(--fs-300);
   font-weight: var(--fw-500);
+  padding-inline: var(--space-200);
 }
 
 @media screen and (max-width: 800px) {
@@ -464,7 +466,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   border-radius: var(--space-200);
   padding-block: var(--space-400);
   padding-inline: var(--space-600);
-  max-width: 500px;
+  max-width: var(--space-3000);
   color: var(--clr-neutral-900);
   background-color: var(--clr-neutral-210);
   font-size: var(--fs-300);
@@ -556,7 +558,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
     opacity: 1;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .signup {
     max-width: 100vw;
     width: 100vw;

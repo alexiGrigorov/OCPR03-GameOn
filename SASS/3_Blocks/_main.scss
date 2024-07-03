@@ -4,7 +4,7 @@
   margin-inline: var(--space-700);
   display: grid;
   grid-template-columns:
-    [hero-headline-start hero-text-start btn-signup-start] auto
+    [hero-headline-start hero-text-start btn-signup-start] 40%
     [hero-text-end btn-signup-end hero-img-start] auto
     [hero-headline-end] auto
     [hero-img-end];
@@ -23,16 +23,16 @@
   & .hero-headline {
     grid-area: hero-headline;
     z-index: 1;
-    padding-block-start: var(--space-700);
-    padding-inline-start: var(--space-700);
+    padding-block-start: var(--space-500-700);
+    padding-inline-start: var(--space-500-700);
     font-size: var(--fs-1100);
     font-weight: var(--fw-500);
   }
 
   & .hero-text {
     grid-area: hero-text;
-    padding-block: var(--space-700);
-    padding-inline-start: var(--space-700);
+    padding-block: var(--space-500-700);
+    padding-inline-start: var(--space-500-700);
     font-size: var(--fs-500);
   }
 
@@ -57,8 +57,8 @@
   & .btn-signup {
     grid-area: btn-signup;
     width: fit-content;
-    margin-block-end: var(--space-700);
-    margin-inline-start: var(--space-700);
+    margin-block-end: var(--space-500-700);
+    margin-inline-start: var(--space-500-700);
     border-radius: var(--space-300);
     border: none;
     padding: var(--space-200) var(--space-500);

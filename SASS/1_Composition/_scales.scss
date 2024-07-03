@@ -43,6 +43,7 @@
   --space-700: clamp(3.375rem, 3.2446rem + 0.6522vi, 3.75rem);
   --space-800: clamp(4.5rem, 4.3261rem + 0.8696vi, 5rem);
   --space-900: clamp(6.75rem, 6.4891rem + 1.3043vi, 7.5rem);
+  --space-3000: clamp(30.375rem, 29.2011rem + 5.8696vi, 33.75rem);
 
   // --space-100 5px - 5px
   // --space-200 9px - 10px
@@ -62,6 +63,7 @@
   --space-600-700: clamp(2.25rem, 1.7283rem + 2.6087vi, 3.75rem);
   --space-700-800: clamp(3.375rem, 2.8098rem + 2.8261vi, 5rem);
   --space-800-900: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
+  --space-500-700: clamp(1.6875rem, 0.9701rem + 3.587vi, 3.75rem);
 }
 
 // --space-100-200 5px - 10px
