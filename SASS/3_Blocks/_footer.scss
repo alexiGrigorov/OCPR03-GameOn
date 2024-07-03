@@ -7,7 +7,7 @@
   padding-inline: var(--space-200);
 }
 
-@media screen and (max-width: breakpoints.$footer-mobile) {
+@media screen and (max-width: breakpoints.$mobile) {
   .copyrights {
     text-align: center;
   }

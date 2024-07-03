@@ -76,7 +76,7 @@
   }
 }
 
-@media screen and (max-width: breakpoints.$main-mobile) {
+@media screen and (max-width: breakpoints.$mobile) {
   .hero {
     margin-inline: var(--space-700);
     display: flex;
