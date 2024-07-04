@@ -50,7 +50,7 @@
         onsubmit="return validate();"
         class="[ flex-space-between ]"
       >
-        <div class="formData">
+        <fieldset class="formData">
           <label for="first">Prénom</label>
           <input
             type="text"
@@ -60,8 +60,8 @@
             pattern="^[\p{L} \-]+$"
             required
           />
-        </div>
-        <div class="formData" data-error="test" data-error-visible="true">
+        </fieldset>
+        <fieldset class="formData" data-error="">
           <label for="last">Nom</label>
           <input
             type="text"
@@ -71,8 +71,8 @@
             pattern="^[\p{L} \-]+$"
             required
           />
-        </div>
-        <div class="formData">
+        </fieldset>
+        <fieldset class="formData">
           <label for="email">E-mail</label>
           <input
             type="email"
@@ -81,12 +81,12 @@
             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             required
           />
-        </div>
-        <div class="formData">
+        </fieldset>
+        <fieldset class="formData">
           <label for="birthdate">Date de naissance</label>
           <input type="date" id="birthdate" name="birthdate" />
-        </div>
-        <div class="formData">
+        </fieldset>
+        <fieldset class="formData">
           <label for="quantity"
             >À combien de tournois GameOn avez-vous déjà participé ?</label
           >
@@ -95,58 +95,44 @@
             id="quantity"
             name="quantity"
             min="0"
-            max="99"
+            max="30"
             pattern="\d*"
           />
-        </div>
-        <div class="formData">
-          <p>A quel tournoi souhaitez-vous participer cette année ?</p>
-          <div class="cities [ flex-wrapper ]">
-            <input
-              type="radio"
-              id="location_1"
-              name="location"
-              value="New York"
-              required
-            />
-            <label class="icon-radio" for="location_1"> New York</label>
-            <input
-              type="radio"
-              id="location_2"
-              name="location"
-              value="San Francisco"
-            />
-            <label class="icon-radio" for="location_2"> San Francisco</label>
-            <input
-              type="radio"
-              id="location_3"
-              name="location"
-              value="Seattle"
-            />
-            <label class="icon-radio" for="location_3"> Seattle</label>
-            <input
-              type="radio"
-              id="location_4"
-              name="location"
-              value="Chicago"
-            />
-            <label class="icon-radio" for="location_4"> Chicago</label>
-            <input
-              type="radio"
-              id="location_5"
-              name="location"
-              value="Boston"
-            />
-            <label class="icon-radio" for="location_5"> Boston</label>
-            <input
-              type="radio"
-              id="location_6"
-              name="location"
-              value="Portland"
-            />
-            <label class="icon-radio" for="location_6"> Portland</label>
-          </div>
-        </div>
+        </fieldset>
+        <fieldset class="formData cities">
+          <legend>
+            A quel tournoi souhaitez-vous participer cette année ?
+          </legend>
+          <input
+            type="radio"
+            id="location_1"
+            name="location"
+            value="New York"
+            required
+          />
+          <label class="icon-radio" for="location_1"> New York</label>
+          <input
+            type="radio"
+            id="location_2"
+            name="location"
+            value="San Francisco"
+          />
+          <label class="icon-radio" for="location_2"> San Francisco</label>
+          <input type="radio" id="location_3" name="location" value="Seattle" />
+          <label class="icon-radio" for="location_3"> Seattle</label>
+          <input type="radio" id="location_4" name="location" value="Chicago" />
+          <label class="icon-radio" for="location_4"> Chicago</label>
+          <input type="radio" id="location_5" name="location" value="Boston" />
+          <label class="icon-radio" for="location_5"> Boston</label>
+          <input
+            type="radio"
+            id="location_6"
+            name="location"
+            value="Portland"
+          />
+          <label class="icon-radio" for="location_6"> Portland</label>
+          <div class="cities [ flex-wrapper ]"></div>
+        </fieldset>
 
         <div class="formData conditions">
           <input type="checkbox" id="acceptsConditions" checked />

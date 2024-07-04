@@ -489,6 +489,9 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 .signup form .formData {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  border-width: 0px;
+  padding: 0;
   width: 100%;
 }
 .signup form .formData > :first-child {
@@ -513,18 +516,24 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   margin-bottom: 7px;
   line-height: 1.1;
   opacity: 0;
-  transition: opacity 0.3s;
+  animation: error 0.5s ease-in-out forwards;
 }
-.signup form .formData[data-error-visible=true]::after {
-  opacity: 0.87;
-}
-.signup form .formData[data-error-visible=true] input {
+.signup form .formData[data-error] input {
   border: 2px solid var(--clr-error);
 }
+@keyframes error {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.87;
+  }
+}
 .signup form .cities {
-  --_flex-direction: row;
+  flex-direction: row;
   flex-wrap: wrap;
   row-gap: var(--space-100);
+  column-gap: var(--space-400);
 }
 .signup form .conditions {
   row-gap: var(--space-100);
@@ -553,21 +562,20 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 .valid {
   position: relative;
 }
-
 .valid::after {
   position: absolute;
-  content: "Merci ! \aVotre réservation a été reçue.";
-  white-space: pre-wrap;
   left: 0;
   bottom: 0;
-  width: 100%;
-  height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
+  content: "Merci ! \aVotre réservation a été reçue.";
+  white-space: pre-wrap;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-inline: var(--space-800);
+  width: 100%;
+  height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
   background-color: var(--clr-neutral-210);
   font-size: var(--fs-700);
-  padding-inline: var(--space-800);
   text-align: center;
 }
 

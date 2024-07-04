@@ -34,7 +34,9 @@
     & .formData {
       display: flex;
       flex-direction: column;
-      // align-items: stretch;
+      margin: 0;
+      border-width: 0px;
+      padding: 0;
       width: 100%;
 
       & > :first-child {
@@ -53,32 +55,40 @@
         }
       }
 
-      &[data-error]::after {
-        content: attr(data-error);
-        font-size: var(--fs-100);
-        color: var(--clr-error);
-        display: block;
-        margin-top: 7px;
-        margin-bottom: 7px;
-        line-height: 1.1;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
+      &[data-error] {
+        &::after {
+          content: attr(data-error);
+          font-size: var(--fs-100);
+          color: var(--clr-error);
+          display: block;
+          margin-top: 7px;
+          margin-bottom: 7px;
+          line-height: 1.1;
+          opacity: 0;
+          animation: error 0.5s ease-in-out forwards;
+        }
 
-      &[data-error-visible="true"]::after {
-        opacity: 0.87;
-      }
+        & input {
+          border: 2px solid var(--clr-error);
+        }
 
-      &[data-error-visible="true"] input {
-        border: 2px solid var(--clr-error);
+        @keyframes error {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 0.87;
+          }
+        }
       }
     }
 
     & .cities {
-      --_flex-direction: row;
+      flex-direction: row;
       flex-wrap: wrap;
 
       row-gap: var(--space-100);
+      column-gap: var(--space-400);
     }
 
     & .conditions {
@@ -112,24 +122,24 @@
 
 .valid {
   position: relative;
-}
-.valid::after {
-  position: absolute;
-  content: "Merci ! \A Votre réservation a été reçue.";
-  white-space: pre-wrap;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--clr-neutral-210);
-  font-size: var(--fs-700);
-  padding-inline: var(--space-800);
-  text-align: center;
-}
 
+  &::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: "Merci ! \A Votre réservation a été reçue.";
+    white-space: pre-wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: var(--space-800);
+    width: 100%;
+    height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
+    background-color: var(--clr-neutral-210);
+    font-size: var(--fs-700);
+    text-align: center;
+  }
+}
 @keyframes modalopen {
   from {
     opacity: 0;

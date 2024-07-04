@@ -182,3 +182,4 @@ const signup = new ModalWithValidatableForm(signupModal, reserve);
 /********** Instantiating the app **********/
 const app = new App(siteHeader, signup);
 app.init();
+app.modalWithValidatableForm.modal.dialog.showModal();
