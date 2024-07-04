@@ -29,8 +29,8 @@ classDiagram
     }
 
     class ModalWithValidatableForm {
-        -> Modal
-        -> ValidatableForm
+        + Modal
+        + ValidatableForm
         init()
         validateForm()
     }
@@ -51,7 +51,7 @@ classDiagram
     }
 
     class ValidationBlock {
-        + <DIV>formData
+        + <FIELDSET>formData
         + [... ValidatableInputFields ]
         init()
         validateBlock()
@@ -83,12 +83,14 @@ classDiagram
 
     class ValidatableInputRadio {
         + <INPUT>inputRadio
+        <LABEL>inputLabel
         init()
-        validateInput()
+        validateInputs()
     }
 
     class ValidatableInputCheckbox {
         + <INPUT>inputCheckbox
+        <LABEL>inputLabel
         init()
         validateInput()
     }

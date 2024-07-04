@@ -30,7 +30,7 @@
       text-decoration: underline;
     }
   }
-  & .icon-bars {
+  & .extend-menu {
     display: none;
   }
 }
@@ -50,13 +50,15 @@
       display: none;
     }
 
-    & .icon-bars {
+    & .extend-menu {
       display: block;
       // position: relative;
 
       order: -1;
       align-self: flex-end;
 
+      border-style: none;
+      background-color: inherit;
       color: var(--clr-primary-600);
       font-size: var(--fs-500);
 

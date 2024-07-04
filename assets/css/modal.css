@@ -316,7 +316,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   background-color: var(--clr-primary-600);
   text-decoration: underline;
 }
-.site-header .icon-bars {
+.site-header .extend-menu {
   display: none;
 }
 
@@ -332,10 +332,12 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   .site-header a {
     display: none;
   }
-  .site-header .icon-bars {
+  .site-header .extend-menu {
     display: block;
     order: -1;
     align-self: flex-end;
+    border-style: none;
+    background-color: inherit;
     color: var(--clr-primary-600);
     font-size: var(--fs-500);
   }
@@ -463,7 +465,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 }
 .signup {
   animation-name: modalopen;
-  border: none;
+  border-style: none;
   border-radius: var(--space-200);
   padding-block: var(--space-400);
   padding-inline: var(--space-600);
@@ -476,12 +478,15 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   background-color: var(--clr-background);
   opacity: 0.4;
 }
-.signup .icon-xmark {
-  display: block;
-  text-align: end;
+.signup .close-modal {
+  float: inline-end;
+  border-style: none;
+  color: inherit;
+  background-color: inherit;
   font-size: var(--fs-400);
 }
 .signup form {
+  clear: inline-end;
   --_flex-gap: var(--space-300);
   --_flex-direction: column;
   --_flex-align: flex-start;
@@ -504,8 +509,11 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   width: 100%;
   font-size: var(--fs-400);
 }
-.signup form .formData input:focus {
-  outline: var(--space-100) solid var(--clr-background);
+.signup form .formData input:focus,
+.signup form .formData label:focus {
+  border-radius: 2px;
+  outline-offset: 2px;
+  outline: 2px solid var(--clr-background);
 }
 .signup form .formData[data-error]::after {
   content: attr(data-error);

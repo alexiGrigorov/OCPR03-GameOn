@@ -21,7 +21,7 @@
         <a href="#">À propos</a>
         <a href="#">Contact</a>
         <a href="#">Évènements passés</a>
-        <i class="icon-bars"></i>
+        <button class="extend-menu icon-bars"></button>
       </nav>
     </header>
 
@@ -42,12 +42,11 @@
     </footer>
 
     <dialog id="signup" class="signup">
-      <i class="icon-xmark"></i>
+      <button class="close-modal icon-xmark"></button>
       <form
         name="reserve"
         action="index.html"
         method="get"
-        onsubmit="return validate();"
         class="[ flex-space-between ]"
       >
         <fieldset class="formData">
@@ -61,7 +60,7 @@
             required
           />
         </fieldset>
-        <fieldset class="formData" data-error="">
+        <fieldset class="formData">
           <label for="last">Nom</label>
           <input
             type="text"
@@ -90,14 +89,7 @@
           <label for="quantity"
             >À combien de tournois GameOn avez-vous déjà participé ?</label
           >
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            min="0"
-            max="30"
-            pattern="\d*"
-          />
+          <input type="number" id="quantity" name="quantity" min="0" max="30" />
         </fieldset>
         <fieldset class="formData cities">
           <legend>
@@ -110,46 +102,57 @@
             value="New York"
             required
           />
-          <label class="icon-radio" for="location_1"> New York</label>
+          <label class="icon-radio" for="location_1" tabindex="0">
+            New York</label
+          >
           <input
             type="radio"
             id="location_2"
             name="location"
             value="San Francisco"
           />
-          <label class="icon-radio" for="location_2"> San Francisco</label>
+          <label class="icon-radio" for="location_2" tabindex="0">
+            San Francisco</label
+          >
           <input type="radio" id="location_3" name="location" value="Seattle" />
-          <label class="icon-radio" for="location_3"> Seattle</label>
+          <label class="icon-radio" for="location_3" tabindex="0">
+            Seattle</label
+          >
           <input type="radio" id="location_4" name="location" value="Chicago" />
-          <label class="icon-radio" for="location_4"> Chicago</label>
+          <label class="icon-radio" for="location_4" tabindex="0">
+            Chicago</label
+          >
           <input type="radio" id="location_5" name="location" value="Boston" />
-          <label class="icon-radio" for="location_5"> Boston</label>
+          <label class="icon-radio" for="location_5" tabindex="0">
+            Boston</label
+          >
           <input
             type="radio"
             id="location_6"
             name="location"
             value="Portland"
           />
-          <label class="icon-radio" for="location_6"> Portland</label>
+          <label class="icon-radio" for="location_6" tabindex="0">
+            Portland</label
+          >
           <div class="cities [ flex-wrapper ]"></div>
         </fieldset>
 
-        <div class="formData conditions">
-          <input type="checkbox" id="acceptsConditions" checked />
-          <label class="icon-checkbox" for="acceptsConditions" required>
+        <fieldset class="formData conditions">
+          <input type="checkbox" id="terms" checked required />
+          <label class="icon-checkbox" for="terms" tabindex="0">
             J'ai lu et accepté les conditions d'utilisation.
           </label>
-          <input type="checkbox" id="interestedFutureEvents" />
-          <label class="icon-checkbox" for="interestedFutureEvents">
+          <input type="checkbox" id="interested" />
+          <label class="icon-checkbox" for="interested" tabindex="0">
             Je souhaite être prévenu des prochains évènements.
           </label>
-        </div>
+        </fieldset>
 
         <input
           id="btn-submit"
           class="btn-submit"
           type="submit"
-          class="button"
           value="C'est parti"
         />
       </form>
