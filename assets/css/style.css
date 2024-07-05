@@ -516,28 +516,6 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   outline-offset: 2px;
   outline: 2px solid var(--clr-background);
 }
-.signup form .formData[data-error]::after {
-  content: attr(data-error);
-  font-size: var(--fs-100);
-  color: var(--clr-error);
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  line-height: 1.1;
-  opacity: 0;
-  animation: error 0.5s ease-in-out forwards;
-}
-.signup form .formData[data-error] input {
-  border: 2px solid var(--clr-error);
-}
-@keyframes error {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.87;
-  }
-}
 .signup form .cities {
   flex-direction: row;
   flex-wrap: wrap;
@@ -607,5 +585,29 @@ input[type=checkbox]:checked + .icon-checkbox:before {
     opacity: 0;
   }
 }
+.signup form [data-error]::after {
+  content: attr(data-error);
+  flex-basis: 100%;
+  font-size: var(--fs-100);
+  color: var(--clr-error);
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  line-height: 1.1;
+  opacity: 0;
+  animation: error 0.5s ease-in-out forwards;
+}
+.signup form [data-error] input {
+  border: 2px solid var(--clr-error);
+}
 
-/*# sourceMappingURL=modal.css.map */
+@keyframes error {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.87;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

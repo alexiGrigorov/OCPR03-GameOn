@@ -8,8 +8,8 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/css/modal.css" />
-    <script src="./assets/js/modal.js" defer></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/script.js" defer></script>
   </head>
   <body class="site [ flex-wrapper ]">
     <header class="site-header [ flex-space-between ]">
@@ -83,7 +83,13 @@
         </fieldset>
         <fieldset class="formData">
           <label for="birthdate">Date de naissance</label>
-          <input type="date" id="birthdate" name="birthdate" />
+          <input
+            type="date"
+            id="birthdate"
+            name="birthdate"
+            min="1900-01-01"
+            required
+          />
         </fieldset>
         <fieldset class="formData">
           <label for="quantity"
@@ -135,7 +141,6 @@
           <label class="icon-radio" for="location_6" tabindex="0">
             Portland</label
           >
-          <div class="cities [ flex-wrapper ]"></div>
         </fieldset>
 
         <fieldset class="formData conditions">

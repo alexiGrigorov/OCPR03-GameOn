@@ -1,0 +1,31 @@
+.signup {
+  & form {
+    [data-error] {
+      &::after {
+        content: attr(data-error);
+        flex-basis: 100%;
+        font-size: var(--fs-100);
+        color: var(--clr-error);
+        display: block;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        line-height: 1.1;
+        opacity: 0;
+        animation: error 0.5s ease-in-out forwards;
+      }
+
+      & input {
+        border: 2px solid var(--clr-error);
+      }
+    }
+  }
+}
+
+@keyframes error {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.87;
+  }
+}

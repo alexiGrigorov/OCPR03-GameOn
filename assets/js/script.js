@@ -124,6 +124,7 @@ class ValidationBlock {
   }
   init() {
     this.validatableInputsArray.forEach((input) => input.init());
+    this.formData.addEventListener("focusout", () => this.validateBlock());
   }
   validateBlock() {
     delete this.formData.dataset.error;
@@ -162,6 +163,11 @@ class ValidatableInputText {
       throw new Error(
         `Veuillez entrer 2 caractères ou plus pour le champ du ${this.label.innerText.toLowerCase()}.`
       );
+
+    if (this.input.validity.patternMismatch)
+      throw new Error(
+        `Veuillez n'utiliser que des lettres (les traits d'union et les accents sont également acceptés).`
+      );
   }
   #customValidation() {}
 
@@ -199,8 +205,34 @@ class ValidatableInputDate {
     this.input = INPUT;
   }
 
-  #standartConstraintValidation() {}
-  #customValidation() {}
+  #standartConstraintValidation() {
+    if (this.input.validity.valid) return;
+
+    if (this.input.validity.valueMissing)
+      throw new Error(`Vous devez entrer votre date de naissance.`);
+
+    if (this.input.validity.rangeUnderflow)
+      throw new Error(
+        `Veuillez nous contacter directement si vous avez plus de 100 ans.`
+      );
+  }
+  #customValidation() {
+    const inputDate = new Date(this.input.value);
+
+    if (inputDate > new Date())
+      throw new Error(
+        `Veuillez vous assurer que vous êtes bien né(e) avant de participer.`
+      );
+
+    const dateAdulthood = new Date(inputDate.getTime()).setFullYear(
+      inputDate.getFullYear() + 18
+    );
+
+    if (dateAdulthood > new Date())
+      throw new Error(
+        `Vous devez être majeur(e) pour participer à nos événements.`
+      );
+  }
 
   init() {}
   validateInput() {
@@ -244,11 +276,15 @@ class ValidatableInputRadio {
     this.label = this.input.nextElementSibling;
   }
 
-  #standartConstraintValidation() {}
+  #standartConstraintValidation() {
+    if (this.input.validity.valid) return;
+
+    if (this.input.validity.valueMissing)
+      throw new Error("Vous devez choisir une option.");
+  }
   #customValidation() {}
 
   init() {
-    // this.input.addEventListener("blur", () => this.validate());
     this.label.addEventListener("keyup", (e) => {
       if (e.keyCode === 32) this.input.click();
     });
@@ -276,7 +312,6 @@ class ValidatableInputCheckbox {
   validateInput() {
     if (this.input.validity.valid) return;
 
-    console.log(this.input.validity);
     if (this.input.validity.valueMissing)
       throw new Error(this.customErrorMessage);
   }
