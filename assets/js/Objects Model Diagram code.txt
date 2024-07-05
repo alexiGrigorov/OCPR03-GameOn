@@ -32,7 +32,6 @@ classDiagram
         + Modal
         + ValidatableForm
         init()
-        validateForm()
     }
 
     class Modal {
@@ -40,6 +39,8 @@ classDiagram
       + <BUTTON>openBtn
       closeBtn
       init()
+      showModal()
+      closeModal()
     }
 
     class ValidatableForm {
@@ -59,26 +60,35 @@ classDiagram
 
     class ValidatableInputText {
         + <INPUT>inputText
+        <LABEL>inputLabel
         init()
         validateInput()
+        #standartConstraintValidation()
+        #customValidation()
     }
 
     class ValidatableInputEmail {
         + <INPUT>inputEmail
         init()
         validateInput()
+        #standartConstraintValidation()
+        #customValidation()
     }
 
     class ValidatableInputDate {
         + <INPUT>inputDate
         init()
         validateInput()
+        #standartConstraintValidation()
+        #customValidation()
     }
 
     class ValidatableInputNumber {
         + <INPUT>inputDate
         init()
         validateInput()
+        #standartConstraintValidation()
+        #customValidation()
     }
 
     class ValidatableInputRadio {
@@ -86,11 +96,16 @@ classDiagram
         <LABEL>inputLabel
         init()
         validateInputs()
+        #standartConstraintValidation()
+        #customValidation()
     }
 
     class ValidatableInputCheckbox {
         + <INPUT>inputCheckbox
         <LABEL>inputLabel
+        customErrorMessage
         init()
         validateInput()
+        #standartConstraintValidation()
+        #customValidation()
     }

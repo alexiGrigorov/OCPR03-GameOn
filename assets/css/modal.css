@@ -465,6 +465,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 }
 .signup {
   animation-name: modalopen;
+  animation-duration: 0.5s;
   border-style: none;
   border-radius: var(--space-200);
   padding-block: var(--space-400);
@@ -572,7 +573,7 @@ input[type=checkbox]:checked + .icon-checkbox:before {
 }
 .valid::after {
   position: absolute;
-  left: 0;
+  left: calc(-1 * var(--space-400));
   bottom: 0;
   content: "Merci ! \aVotre réservation a été reçue.";
   white-space: pre-wrap;
@@ -580,8 +581,8 @@ input[type=checkbox]:checked + .icon-checkbox:before {
   align-items: center;
   justify-content: center;
   padding-inline: var(--space-800);
-  width: 100%;
-  height: calc(100% - var(--space-400) - 1.5 * var(--space-400));
+  width: calc(100% + 2 * var(--space-400));
+  height: 100%;
   background-color: var(--clr-neutral-210);
   font-size: var(--fs-700);
   text-align: center;
