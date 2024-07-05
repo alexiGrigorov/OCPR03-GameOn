@@ -303,9 +303,7 @@ class ValidatableInputCheckbox {
   }
 
   init() {
-    // this.input.addEventListener("blur", () => this.validate());
     this.label.addEventListener("keyup", (e) => {
-      console.log(e.target);
       if (e.keyCode === 32) this.input.click();
     });
   }
@@ -350,8 +348,8 @@ const formValidationBlocks = [
   quantity,
   terms,
 ].map((field) => new ValidationBlock(field.input.parentNode, [field]));
-// location is an array of radio buttons
 
+// location is an array of radio buttons
 formValidationBlocks.push(
   new ValidationBlock(locations[0].input.parentNode, locations)
 );
@@ -375,4 +373,3 @@ console.log(app);
 
 /********** Initializing the app **********/
 app.init();
-app.modalWithValidatableForm.modal.showModal();
