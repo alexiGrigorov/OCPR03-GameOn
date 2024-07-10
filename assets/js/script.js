@@ -34,11 +34,14 @@ class ExpendableNavbar {
 class ModalWithValidatableForm {
   constructor(modal, ValidatableForm) {
     this.modal = modal;
-    this.ValidatableForm = ValidatableForm;
+    this.validatableForm = ValidatableForm;
   }
   init() {
     Object.values(this).forEach((feature) => {
       feature.init();
+    });
+    this.validatableForm.form.addEventListener("validForm", () => {
+      this.modal.closeModal();
     });
   }
 }
@@ -79,7 +82,12 @@ class ValidatableForm {
   }
 
   init() {
-    this.submitBtn.addEventListener("click", (e) => {
+    const closeFn = (e) => {
+      e.preventDefault();
+      const validFormEvent = new CustomEvent("validForm"); // create a custom event
+      this.form.dispatchEvent(validFormEvent); // dispatch the event
+    };
+    const submitFn = (e) => {
       e.preventDefault();
 
       try {
@@ -89,10 +97,24 @@ class ValidatableForm {
         return;
       }
 
-      this.form.classList.add("valid");
       // if there is need to submit the form
       // this.form.submit();
-    });
+
+      this.form.classList.add("valid");
+
+      //prevent all the inputs from being edited after submission
+      Array.from(this.form.elements)
+        .filter((el) => el.tagName === "INPUT" && el.type !== "submit")
+        .forEach((input) => input.setAttribute("disabled", true));
+
+      this.submitBtn.value = "Fermer";
+
+      // no more form validation, instead change the button to close the modal
+      this.submitBtn.removeEventListener("click", submitFn);
+      this.submitBtn.addEventListener("click", closeFn);
+    };
+
+    this.submitBtn.addEventListener("click", submitFn);
 
     this.validationBlocksArray.forEach((validationBlock) => {
       validationBlock.init();
@@ -373,3 +395,4 @@ console.log(app);
 
 /********** Initializing the app **********/
 app.init();
+app.modalWithValidatableForm.modal.showModal();

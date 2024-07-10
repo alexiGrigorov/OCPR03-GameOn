@@ -93,7 +93,7 @@
       display: block;
       margin: 0 auto;
       border-radius: 7px;
-      font-size: 1rem;
+      font-size: var(--fs-400);
       padding: 12px 82px;
       color: var(--clr-neutral-900);
       cursor: pointer;
@@ -108,7 +108,7 @@
   &::after {
     position: absolute;
     left: calc(-1 * var(--space-400));
-    bottom: 0;
+    bottom: calc(0 - var(--fs-400) * 1.1 - 24px);
     content: "Merci ! \A Votre réservation a été reçue.";
     white-space: pre-wrap;
     display: flex;
@@ -116,7 +116,7 @@
     justify-content: center;
     padding-inline: var(--space-800);
     width: calc(100% + 2 * var(--space-400));
-    height: 100%;
+    height: calc(100% - var(--fs-400) * 1.1 - 24px);
     background-color: var(--clr-neutral-210);
     font-size: var(--fs-700);
     text-align: center;
