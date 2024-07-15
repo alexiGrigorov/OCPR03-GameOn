@@ -395,4 +395,3 @@ console.log(app);
 
 /********** Initializing the app **********/
 app.init();
-app.modalWithValidatableForm.modal.showModal();
