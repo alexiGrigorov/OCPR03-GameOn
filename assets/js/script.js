@@ -93,7 +93,7 @@ class ValidatableForm {
       try {
         this.validateForm();
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return;
       }
 
@@ -146,19 +146,21 @@ class ValidationBlock {
   }
   init() {
     this.validatableInputsArray.forEach((input) => input.init());
-    this.formData.addEventListener("focusout", () => this.validateBlock());
+    this.formData.addEventListener("focusout", (e) => this.validateBlock(e));
   }
-  validateBlock() {
+  validateBlock(event) {
     delete this.formData.dataset.error;
     try {
       this.validatableInputsArray.forEach((input) => input.validateInput());
     } catch (error) {
       this.formData.dataset.error = error.message;
-      throw new Error(
-        `Invalid form block. ${Array.from(this.formData.children)
-          .filter((el) => el.tagName === "LABEL")[0]
-          .getAttribute("for")}`
-      );
+      if (!event) {
+        throw new Error(
+          `Invalid form block. ${Array.from(this.formData.children)
+            .filter((el) => el.tagName === "LABEL")[0]
+            .getAttribute("for")}`
+        );
+      }
     }
   }
 }
@@ -173,28 +175,48 @@ class ValidatableInputText {
 
   init() {}
 
-  #standartConstraintValidation() {
+  #standardConstraintValidation() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.valueMissing)
+    // if (this.input.validity.valueMissing)
+    //   throw new Error(
+    //     `Veuillez remplir votre ${this.label.innerText.toLowerCase()}.`
+    //   );
+
+    // if (this.input.validity.tooShort)
+    //   throw new Error(
+    //     `Veuillez entrer 2 caractères ou plus pour le champ du ${this.label.innerText.toLowerCase()}.`
+    //   );
+
+    // if (this.input.validity.patternMismatch)
+    //   throw new Error(
+    //     `Veuillez n'utiliser que des lettres (les traits d'union et les accents sont également acceptés).`
+    //   );
+  }
+  #customValidation() {
+    if (this.input.value === "") {
       throw new Error(
         `Veuillez remplir votre ${this.label.innerText.toLowerCase()}.`
       );
+    }
 
-    if (this.input.validity.tooShort)
+    if (this.input.value.length < 2) {
       throw new Error(
         `Veuillez entrer 2 caractères ou plus pour le champ du ${this.label.innerText.toLowerCase()}.`
       );
+    }
 
-    if (this.input.validity.patternMismatch)
+    const onlyLetters = new RegExp("^[p{L} -]+$");
+
+    if (!onlyLetters.test(this.input.value)) {
       throw new Error(
         `Veuillez n'utiliser que des lettres (les traits d'union et les accents sont également acceptés).`
       );
+    }
   }
-  #customValidation() {}
 
   validateInput() {
-    this.#standartConstraintValidation();
+    this.#standardConstraintValidation();
     this.#customValidation();
   }
 }
@@ -204,20 +226,32 @@ class ValidatableInputEmail {
     this.input = INPUT;
   }
 
-  #standartConstraintValidation() {
+  #standardConstraintValidation() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.valueMissing)
-      throw new Error(`Veuillez remplir votre email.`);
+    // if (this.input.validity.valueMissing)
+    //   throw new Error(`Veuillez remplir votre email.`);
 
-    if (this.input.validity.typeMismatch)
-      throw new Error(`Veuillez saisir un adresse email valide`);
+    // if (this.input.validity.typeMismatch)
+    //   throw new Error(`Veuillez saisir un adresse email valide`);
   }
-  #customValidation() {}
+  #customValidation() {
+    if (this.input.value === "") {
+      throw new Error(`Veuillez remplir votre email.`);
+    }
+
+    const validEmail = new RegExp(
+      "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+    );
+
+    if (!validEmail.test(this.input.value)) {
+      throw new Error(`Veuillez saisir un adresse email valide`);
+    }
+  }
 
   init() {}
   validateInput() {
-    this.#standartConstraintValidation();
+    this.#standardConstraintValidation();
     this.#customValidation();
   }
 }
@@ -227,18 +261,22 @@ class ValidatableInputDate {
     this.input = INPUT;
   }
 
-  #standartConstraintValidation() {
+  #standardConstraintValidation() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.valueMissing)
-      throw new Error(`Vous devez entrer votre date de naissance.`);
+    // if (this.input.validity.valueMissing)
+    //   throw new Error(`Vous devez entrer votre date de naissance.`);
 
-    if (this.input.validity.rangeUnderflow)
-      throw new Error(
-        `Veuillez nous contacter directement si vous avez plus de 100 ans.`
-      );
+    // if (this.input.validity.rangeUnderflow)
+    //   throw new Error(
+    //     `Veuillez nous contacter directement si vous avez plus de 100 ans.`
+    //   );
   }
   #customValidation() {
+    if (this.input.value === "") {
+      throw new Error(`Vous devez entrer votre date de naissance.`);
+    }
+
     const inputDate = new Date(this.input.value);
 
     if (inputDate > new Date())
@@ -254,11 +292,22 @@ class ValidatableInputDate {
       throw new Error(
         `Vous devez être majeur(e) pour participer à nos événements.`
       );
+
+    const moreThan100YearsAgo = new Date(
+      new Date().getFullYear() - 100,
+      new Date().getMonth(),
+      new Date().getDate()
+    );
+
+    if (inputDate < moreThan100YearsAgo)
+      throw new Error(
+        `Veuillez nous contacter directement si vous avez plus de 100 ans.`
+      );
   }
 
   init() {}
   validateInput() {
-    this.#standartConstraintValidation();
+    this.#standardConstraintValidation();
     this.#customValidation();
   }
 }
@@ -268,18 +317,26 @@ class ValidatableInputNumber {
     this.input = INPUT;
   }
 
-  #standartConstraintValidation() {
+  #standardConstraintValidation() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.rangeUnderflow)
+    // if (this.input.validity.rangeUnderflow)
+    //   throw new Error(
+    //     `Il y a toujours une première fois, mais jamais de fois négative`
+    //   );
+
+    // if (this.input.validity.rangeOverflow)
+    //   throw new Error(`Nous n'avons même pas organisé autant d'événements`);
+  }
+  #customValidation() {
+    if (Number.parseInt(this.input.value) < 0)
       throw new Error(
         `Il y a toujours une première fois, mais jamais de fois négative`
       );
 
-    if (this.input.validity.rangeOverflow)
+    if (Number.parseInt(this.input.value) > 30)
       throw new Error(`Nous n'avons même pas organisé autant d'événements`);
-  }
-  #customValidation() {
+
     const onlyDigits = /^-?\d+(\.\d+)?$/;
     if (!onlyDigits.test(this.input.value))
       throw new Error("Veuillez saisir une valeur numérique en chiffres.");
@@ -287,7 +344,7 @@ class ValidatableInputNumber {
 
   init() {}
   validateInput() {
-    this.#standartConstraintValidation();
+    this.#standardConstraintValidation();
     this.#customValidation();
   }
 }
@@ -298,13 +355,23 @@ class ValidatableInputRadio {
     this.label = this.input.nextElementSibling;
   }
 
-  #standartConstraintValidation() {
+  #standardConstraintValidation() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.valueMissing)
-      throw new Error("Vous devez choisir une option.");
+    // if (this.input.validity.valueMissing)
+    //   throw new Error("Vous devez choisir une option.");
   }
-  #customValidation() {}
+  #customValidation() {
+    const radioGroup = Array.from(
+      document.querySelectorAll(`input[name="${this.input.name}"]`)
+    );
+
+    const selectedValue = radioGroup.reduce(
+      (value, radio) => (radio.checked ? radio.value : value),
+      null
+    );
+    if (!selectedValue) throw new Error("Vous devez choisir une option.");
+  }
 
   init() {
     this.label.addEventListener("keyup", (e) => {
@@ -312,7 +379,7 @@ class ValidatableInputRadio {
     });
   }
   validateInput() {
-    this.#standartConstraintValidation();
+    this.#standardConstraintValidation();
     this.#customValidation();
   }
 }
@@ -332,8 +399,10 @@ class ValidatableInputCheckbox {
   validateInput() {
     if (this.input.validity.valid) return;
 
-    if (this.input.validity.valueMissing)
-      throw new Error(this.customErrorMessage);
+    // if (this.input.validity.valueMissing)
+    //   throw new Error(this.customErrorMessage);
+
+    if (this.input.value) throw new Error(this.customErrorMessage);
   }
 }
 
@@ -391,7 +460,6 @@ const signupModalForm = new ModalWithValidatableForm(signup, reserve);
 
 /********** Instantiating the app **********/
 const app = new App(mainNavbar, signupModalForm);
-console.log(app);
 
 /********** Initializing the app **********/
 app.init();

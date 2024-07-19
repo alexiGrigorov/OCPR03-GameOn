@@ -63,7 +63,7 @@ classDiagram
         <LABEL>inputLabel
         init()
         validateInput()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
 
@@ -71,7 +71,7 @@ classDiagram
         + <INPUT>inputEmail
         init()
         validateInput()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
 
@@ -79,7 +79,7 @@ classDiagram
         + <INPUT>inputDate
         init()
         validateInput()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
 
@@ -87,7 +87,7 @@ classDiagram
         + <INPUT>inputDate
         init()
         validateInput()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
 
@@ -96,7 +96,7 @@ classDiagram
         <LABEL>inputLabel
         init()
         validateInputs()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
 
@@ -106,6 +106,6 @@ classDiagram
         customErrorMessage
         init()
         validateInput()
-        #standartConstraintValidation()
+        #standardConstraintValidation()
         #customValidation()
     }
